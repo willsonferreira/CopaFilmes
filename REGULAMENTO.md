@@ -26,11 +26,17 @@ Para a entrega desta solução, é esperado dois projetos distintos: um projeto 
 #### 1) Consuma nossa API de filmes e avaliações:
  http://copafilmes.azurewebsites.net/api/filmes
 Por meio da URL indicada acima você conseguirá acessar uma lista de filmes com as seguintes informações:
+
 • Id;
+
 • Título;
+
 • Ano de Lançamento;
+
 • Nota.
+
 Utilize esses filmes e essas notas em sua solução.
+
 #### 2) Exibição
 - Crie uma tela para que o usuário possa selecionar os filmes:
 A API retornará 16 filmes, o usuário deverá escolher apenas 8 filmes através de uma listagem para dar início à competição.
