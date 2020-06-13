@@ -1,16 +1,20 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CopaFilmes.Backend.Model;
+using CopaFilmes.Backend.Model.Interfaces;
+using CopaFilmes.Backend.Service;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
 namespace CopaFilmes.Backend.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class  Controller : ControllerBase
+    public class ListaDeFilmesController : ControllerBase
     {
         [HttpGet]
-        public string Get()
+        public IEnumerable<IFilme> Get()
         {
-            return "sucesso";
+            var listaDeFilmesService = new ListaDeFilmesService();
+            return listaDeFilmesService.Buscar();
         }
     }
 
