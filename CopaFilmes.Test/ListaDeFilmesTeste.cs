@@ -9,7 +9,7 @@ namespace CopaFilmes.Test
         public IListaDeFilmes listaDeFilmes;
 
         [SetUp]
-        public void Daado_Uma_ListaDeFimlesVazia()
+        public void Dado_uma_lista_de_fimles_vazia()
         {
             listaDeFilmes = new ListaDeFilmes();
         }
