@@ -1,26 +1,25 @@
-using System.Net.Http;
+using CopaFilmes.Backend.AntiCorruption;
+using CopaFilmes.Backend.AntiCorruption.Interfaces;
 using NUnit.Framework;
 
 namespace CopaFilmes.Test
 {
     public class ListaDeFilmesTeste
     {
+        public IListaDeFilmes listaDeFilmes;
 
         [SetUp]
         public void Daado_Uma_ListaDeFimlesVazia()
         {
+            listaDeFilmes = new ListaDeFilmes();
         }
 
         [Test]
         public void Devo_conseguir_preencher_a_lista_buscando_os_itens_na_fonte_de_dados()
         {
-            var url = "http://copafilmes.azurewebsites.net/api/filmes";
-            var client = new HttpClient();
-                var response = client.GetStringAsync(url);
+            var retornoComFilmes = listaDeFilmes.Buscar();
 
-            var listaDeFilmes = response.Result;
-
-            Assert.IsNotEmpty(listaDeFilmes); 
+            Assert.IsTrue(retornoComFilmes.Count > 0); 
         }
     }
 }
