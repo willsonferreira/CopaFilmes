@@ -1,4 +1,4 @@
-using System;
+using System.Net.Http;
 using NUnit.Framework;
 
 namespace CopaFilmes.Test
@@ -14,7 +14,13 @@ namespace CopaFilmes.Test
         [Test]
         public void Devo_conseguir_preencher_a_lista_buscando_os_itens_na_fonte_de_dados()
         {
-            throw new NotImplementedException();    
+            var url = "http://copafilmes.azurewebsites.net/api/filmes";
+            var client = new HttpClient();
+                var response = client.GetStringAsync(url);
+
+            var listaDeFilmes = response.Result;
+
+            Assert.IsNotEmpty(listaDeFilmes); 
         }
     }
 }
