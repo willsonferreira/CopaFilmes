@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using CopaFilmes.Backend.Model.Interfaces;
+﻿using CopaFilmes.Backend.Model.Interfaces;
 using CopaFilmes.Backend.Model.Factory;
 using CopaFilmes.Backend.Model;
 using CopaFilmes.Backend.Service;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+
 
 namespace CopaFilmes.Backend.Controllers
 {
