@@ -2,5 +2,7 @@
 {
     public interface IResultadoDaFinal
     {
+        IFilme Campeao { get; }
+        IFilme ViceCampeao { get; }
     }
 }

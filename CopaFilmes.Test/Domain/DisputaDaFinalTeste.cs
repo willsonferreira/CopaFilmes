@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace CopaFilmes.Test.Domain
 {
-    public class DisputaDoCampeonatoTeste
+    public class DisputaDaFinalTeste
     {
         public ICampeonato campeonato;
 
@@ -18,7 +18,7 @@ namespace CopaFilmes.Test.Domain
         }
 
         [Test]
-        public void Devo_conseguir_executar_a_disputa_das_fases()
+        public void Devo_conseguir_executar_o_confronto_da_final()
         {
             //Arrange
             var listaDeFilmes = new List<IFilme>();
@@ -30,13 +30,16 @@ namespace CopaFilmes.Test.Domain
             
             var inicializacaoDoCampeonato = InicializacaoDoCampeonatoFactory.Criar(listaDeFilmes);
             campeonato = inicializacaoDoCampeonato.Inicializar();
-            
-            //Act
+
             var disputaDoCampeonato = DisputaDoCampeonatoFactory.Criar(campeonato);
             disputaDoCampeonato.ExecutarDisputaDasFases();
+            
+            //Act
+            var disputaDaFinal = DisputaDaFinalFactory.Criar(campeonato);
+            disputaDaFinal.ExecutarConfrontoDaFinal();
 
             //Assert
-            Assert.Greater(campeonato.Fases.Count, 1); 
+            Assert.AreEqual(campeonato.ResultadoFinal.Campeao.Titulo, listaDeFilmes[0].Titulo); 
         }
     }
 }
