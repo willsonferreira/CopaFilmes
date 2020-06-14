@@ -2,8 +2,8 @@
 {
     public interface IParticipante
     {
-        public IFilme FilmeParticipante { get; }
+        IFilme FilmeParticipante { get; }
 
-        public int PosicaoNaOrdemAlfabetica { get; }
+        int PosicaoNaOrdemAlfabetica { get; }
     }
 }

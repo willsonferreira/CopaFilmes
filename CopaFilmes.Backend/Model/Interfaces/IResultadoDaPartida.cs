@@ -2,7 +2,7 @@
 {
     public interface IResultadoDaPartida
     {
-        public IParticipante Vencedor { get; }
-        public IParticipante Derrotado { get; }
+        IParticipante Vencedor { get; }
+        IParticipante Derrotado { get; }
     }
 }
