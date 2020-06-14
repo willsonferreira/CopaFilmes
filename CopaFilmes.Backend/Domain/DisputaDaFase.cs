@@ -1,5 +1,5 @@
 ﻿using CopaFilmes.Backend.Domain.Interfaces;
-using CopaFilmes.Backend.Factory;
+using CopaFilmes.Backend.Model.Factory;
 using CopaFilmes.Backend.Model.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -11,6 +11,7 @@ namespace CopaFilmes.Backend.Domain
     {
         #region Propriedades Privadas
         protected IFase _fase;
+        private int _posicaoDoConfrontoNaFase;
         #endregion
 
         #region Propriedades Publicas
@@ -30,23 +31,16 @@ namespace CopaFilmes.Backend.Domain
         #region Metodos
         public IFase AvancarFase(IFase novaFase)
         {
-            var vencedores = new List<IParticipante>();
-            int posicaoDoConfrontoNaFase = 1;
-            int ultimoConfrontoDaFase = _fase.Confrontos.OrderBy(confronto => confronto.PosicaoDoConfrontoNaFase).Last().PosicaoDoConfrontoNaFase;
+            _posicaoDoConfrontoNaFase = 1;
+            var vencedores = new List<IParticipante>();            
             int posicaoDoConfrontoNaNovaFase = 1;
             var confrontosNaNovaFase = new List<IConfronto>();
 
-            while (posicaoDoConfrontoNaFase < _fase.Confrontos.Count)
+            while (_posicaoDoConfrontoNaFase < _fase.Confrontos.Count)
             {
-                var confronto1 = _fase.Confrontos.First(confronto => confronto.PosicaoDoConfrontoNaFase == posicaoDoConfrontoNaFase);
-                var apuracaoDoConfronto1 = new ApuracaoDoConfronto(confronto1);
-                var resultado1 = apuracaoDoConfronto1.DefinirVencedor();
-                posicaoDoConfrontoNaFase++;
+                var resultado1 = ExecutarComfronto();
 
-                var confronto2 = _fase.Confrontos.First(confronto => confronto.PosicaoDoConfrontoNaFase == posicaoDoConfrontoNaFase);
-                var apuracaoDoConfronto2 = new ApuracaoDoConfronto(confronto2);
-                var resultado2 = apuracaoDoConfronto2.DefinirVencedor();
-                posicaoDoConfrontoNaFase++;
+                var resultado2 = ExecutarComfronto();
 
                 var novoConfronto = ConfrontoFactory.Criar(resultado1.Vencedor, resultado2.Vencedor, posicaoDoConfrontoNaNovaFase);
 
@@ -55,6 +49,17 @@ namespace CopaFilmes.Backend.Domain
             }
 
             return novaFase;
+        }
+
+        private IResultadoDaPartida ExecutarComfronto()
+        {            
+            var confronto =_fase.Confrontos.First(confronto => confronto.PosicaoDoConfrontoNaFase == _posicaoDoConfrontoNaFase);
+            var apuracaoDoConfronto = new ApuracaoDoConfronto(confronto);
+            var resultado = apuracaoDoConfronto.DefinirVencedor();
+
+            _posicaoDoConfrontoNaFase++;
+            
+            return resultado;
         }
         #endregion
     }

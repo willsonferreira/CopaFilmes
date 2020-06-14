@@ -1,5 +1,5 @@
 ﻿using CopaFilmes.Backend.Domain.Interfaces;
-using CopaFilmes.Backend.Factory;
+using CopaFilmes.Backend.Model.Factory;
 using CopaFilmes.Backend.Model.Interfaces;
 using System;
 
