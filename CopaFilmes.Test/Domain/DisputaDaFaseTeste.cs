@@ -16,7 +16,7 @@ namespace CopaFilmes.Test.Domain
         }
 
         [Test]
-        public void Devo_conseguir_executar_as_disputas_dos_conforntos()
+        public void Devo_conseguir_avancar_a_fase_executando_as_disputas_dos_conforntos()
         {
             //Arrange
             var filmeParticipante1 = new Participante(new Filme("1","Filme 1", 10), 1);
