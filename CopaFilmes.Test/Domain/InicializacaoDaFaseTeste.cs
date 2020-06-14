@@ -8,7 +8,7 @@ namespace CopaFilmes.Test.Domain
 {
     public class InicializacaoDaFaseTeste
     {
-        public Fase fase;
+        private List<IParticipante> listaDeParticipantes;
 
         [SetUp]
         public void Dado_uma_lista_de_participantes()
@@ -20,7 +20,7 @@ namespace CopaFilmes.Test.Domain
         public void Devo_conseguir_inicializar_a_fase_organizando_os_confrontos()
         {
             //Arrange
-            var listaDeParticipantes = new List<IParticipante>();
+            listaDeParticipantes = new List<IParticipante>();
             var filmeParticipante1 = new Participante(new Filme("1","Filme 1", 10), 1);
             listaDeParticipantes.Add(filmeParticipante1);
             var filmeParticipante2 = new Participante(new Filme("2","Filme 2", 9), 2);
