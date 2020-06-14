@@ -1,12 +1,13 @@
-using CopaFilmes.Backend.Domain;
-using CopaFilmes.Backend.Model;
+using CopaFilmes.Backend.Domain.Factory;
+using CopaFilmes.Backend.Domain.Interfaces;
+using CopaFilmes.Backend.Model.Factory;
 using NUnit.Framework;
 
 namespace CopaFilmes.Test.Domain
 {
     public class ApuracaoDoConfrontoTeste
     {
-        public ApuracaoDoConfronto apuracaoDoConfronto;
+        private IApuracaoDoConfronto apuracaoDoConfronto;
 
         [SetUp]
         public void Dado_um_confronto()
@@ -18,12 +19,12 @@ namespace CopaFilmes.Test.Domain
         public void Devo_conseguir_definir_como_vencedor_o_filme_com_maior_nota()
         {
             //Arrange
-            var filmeParticipante1 = new Participante(new Filme("1","Filme 1", 10), 1);
-            var filmeParticipante2 = new Participante(new Filme("2","Filme 2", 9), 2);
-            var confronto = new Confronto(filmeParticipante1, filmeParticipante2, 1);
+            var filmeParticipante1 = ParticipanteFactory.Criar(FilmeFactory.Criar("1","Filme 1", 10), 1);
+            var filmeParticipante2 = ParticipanteFactory.Criar(FilmeFactory.Criar("2","Filme 2", 9), 2);
+            var confronto = ConfrontoFactory.Criar(filmeParticipante1, filmeParticipante2, 1);
             
             //Act
-            apuracaoDoConfronto = new ApuracaoDoConfronto(confronto);
+            apuracaoDoConfronto = ApuracaoDoConfrontoFactory.Criar(confronto);
             var resultadoDaPartida = apuracaoDoConfronto.DefinirVencedor();
 
             //Assert
@@ -34,12 +35,12 @@ namespace CopaFilmes.Test.Domain
         public void Devo_conseguir_definir_o_vencedor_pela_ordem_alfabetica_quando_acontecer_empate_por_nota()
         {
             //Arrange
-            var filmeParticipante1 = new Participante(new Filme("1","Filme 1", 10), 2);
-            var filmeParticipante2 = new Participante(new Filme("2","Filme 2", 10), 1);
-            var confronto = new Confronto(filmeParticipante1, filmeParticipante2, 1);
+            var filmeParticipante1 = ParticipanteFactory.Criar(FilmeFactory.Criar("1","Filme 1", 10), 2);
+            var filmeParticipante2 = ParticipanteFactory.Criar(FilmeFactory.Criar("2","Filme 2", 10), 1);
+            var confronto =  ConfrontoFactory.Criar(filmeParticipante1, filmeParticipante2, 1);
             
             //Act
-            apuracaoDoConfronto = new ApuracaoDoConfronto(confronto);
+            apuracaoDoConfronto = ApuracaoDoConfrontoFactory.Criar(confronto);
             var resultadoDaPartida = apuracaoDoConfronto.DefinirVencedor();
 
             //Assert
