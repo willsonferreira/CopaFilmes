@@ -1,6 +1,6 @@
 ﻿using CopaFilmes.Backend.AntiCorruption.Interfaces;
 using CopaFilmes.Backend.Infra;
-using CopaFilmes.Backend.Factory;
+using CopaFilmes.Backend.Model.Factory;
 using CopaFilmes.Backend.Model.Interfaces;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
