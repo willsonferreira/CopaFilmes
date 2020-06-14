@@ -1,6 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CopaFilmes.Backend.Model.Interfaces;
+using CopaFilmes.Backend.Model.Factory;
+using CopaFilmes.Backend.Model;
+using CopaFilmes.Backend.Service;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+
 
 namespace CopaFilmes.Backend.Controllers
 {
@@ -9,9 +14,13 @@ namespace CopaFilmes.Backend.Controllers
     public class CampeonatoController : ControllerBase
     {
         [HttpPost]
-        public void Post()
+        public IResultadoDaFinal Post([FromBody] List<FilmeRecebido> filmes)
         {
-            
+            var execucaoDoCampeonatoService = new ExecucaoDoCampeonatoService();
+            var filmesConvertidos = filmes.ConvertAll(new Converter<FilmeRecebido, IFilme>(FilmeFactory.Criar));
+            var campeonato = execucaoDoCampeonatoService.Executar(filmesConvertidos);
+
+            return campeonato.ResultadoFinal;
         }
     }
 }

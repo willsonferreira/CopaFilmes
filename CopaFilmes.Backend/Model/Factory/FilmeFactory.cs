@@ -8,5 +8,10 @@ namespace CopaFilmes.Backend.Model.Factory
         {
             return new Filme(id, titulo, nota, anoLancamento);
         }
+
+        public static IFilme Criar(FilmeRecebido filmeRecebido)
+        {
+            return new Filme(filmeRecebido.Id, filmeRecebido.Titulo, filmeRecebido.Nota, filmeRecebido.AnoLancamento);
+        }
     }
 }
