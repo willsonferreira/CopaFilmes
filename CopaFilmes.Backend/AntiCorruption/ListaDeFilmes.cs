@@ -1,6 +1,6 @@
 ﻿using CopaFilmes.Backend.AntiCorruption.Interfaces;
 using CopaFilmes.Backend.Infra;
-using CopaFilmes.Backend.Model;
+using CopaFilmes.Backend.Factory;
 using CopaFilmes.Backend.Model.Interfaces;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
@@ -40,7 +40,7 @@ namespace CopaFilmes.Backend.AntiCorruption
                 double nota = double.Parse(notaTexto, System.Globalization.CultureInfo.InvariantCulture);
                 string anoLancamento = filmeDynamic.ano;
 
-                var filme = new Filme(id, titulo, nota, anoLancamento);
+                var filme = FilmeFactory.Criar(id, titulo, nota, anoLancamento);
                 filmes.Add(filme);
             }
 
