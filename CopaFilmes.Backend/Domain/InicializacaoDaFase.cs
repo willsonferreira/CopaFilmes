@@ -1,5 +1,5 @@
 ﻿using CopaFilmes.Backend.Domain.Interfaces;
-using CopaFilmes.Backend.Model;
+using CopaFilmes.Backend.Model.Factory;
 using CopaFilmes.Backend.Model.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ namespace CopaFilmes.Backend.Domain
     public class InicializacaoDaFase : IInicializacaoDaFase
     {
         #region Propriedades Privadas
-        protected Fase _fase { get; set; }
+        protected IFase _fase { get; set; }
         protected List<IParticipante> _participantes { get; set; }
         #endregion
 
@@ -20,7 +20,7 @@ namespace CopaFilmes.Backend.Domain
         #endregion
 
         #region Construtores
-        public InicializacaoDaFase(IList<IParticipante> participantes, Fase fase = null)
+        public InicializacaoDaFase(IList<IParticipante> participantes, IFase fase = null)
         {
             if (participantes == null)
                 throw new ArgumentNullException("Os filmes participantes não foram informados");
@@ -29,7 +29,7 @@ namespace CopaFilmes.Backend.Domain
                 throw new ArgumentException("Quantidade de participantes deve ser par");
 
             if (fase == null)
-                fase = new Fase();
+                fase = FaseFactory.Criar();
 
             _fase = fase;
             _participantes = participantes.ToList();
@@ -46,7 +46,7 @@ namespace CopaFilmes.Backend.Domain
             {
                 IParticipante participante1 = BuscarParticipantePorPosicaoNaOrdemAlfabetica(primeiraPosicao);
                 IParticipante participante2 = BuscarParticipantePorPosicaoNaOrdemAlfabetica(ultimaPosicao);
-                var confronto = new Confronto(participante1, participante2, posicaoDoConfrontoNaFase);
+                var confronto = ConfrontoFactory.Criar(participante1, participante2, posicaoDoConfrontoNaFase);
 
                 _fase.AdicionarConfronto(confronto);
 

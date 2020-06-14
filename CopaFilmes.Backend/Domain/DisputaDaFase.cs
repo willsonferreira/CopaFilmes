@@ -1,4 +1,5 @@
 ﻿using CopaFilmes.Backend.Domain.Interfaces;
+using CopaFilmes.Backend.Domain.Factory;
 using CopaFilmes.Backend.Model.Factory;
 using CopaFilmes.Backend.Model.Interfaces;
 using System;
@@ -54,7 +55,7 @@ namespace CopaFilmes.Backend.Domain
         private IResultadoDaPartida ExecutarComfronto()
         {            
             var confronto =_fase.Confrontos.First(confronto => confronto.PosicaoDoConfrontoNaFase == _posicaoDoConfrontoNaFase);
-            var apuracaoDoConfronto = new ApuracaoDoConfronto(confronto);
+            var apuracaoDoConfronto = ApuracaoDoConfrontoFactory.Criar(confronto);
             var resultado = apuracaoDoConfronto.DefinirVencedor();
 
             _posicaoDoConfrontoNaFase++;
