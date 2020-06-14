@@ -5,5 +5,7 @@
         public IParticipante Participante1 { get; }
         public IParticipante Participante2 { get ; }
 
+        public int PosicaoDoConfrontoNaFase { get; }
+
     }
 }
