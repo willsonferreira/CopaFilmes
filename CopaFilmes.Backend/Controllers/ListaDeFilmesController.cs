@@ -8,7 +8,7 @@ namespace CopaFilmes.Backend.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class ListaDeFilmesController : ControllerBase
+    public class FilmeController : ControllerBase
     {
         [HttpGet]
         public IEnumerable<IFilme> Get()
