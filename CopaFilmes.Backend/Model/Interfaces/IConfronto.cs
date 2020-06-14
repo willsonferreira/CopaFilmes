@@ -2,10 +2,10 @@
 {
     public interface IConfronto
     {        
-        public IParticipante Participante1 { get; }
-        public IParticipante Participante2 { get ; }
+        IParticipante Participante1 { get; }
+        IParticipante Participante2 { get ; }
 
-        public int PosicaoDoConfrontoNaFase { get; }
+        int PosicaoDoConfrontoNaFase { get; }
 
     }
 }
