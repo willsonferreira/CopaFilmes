@@ -1,5 +1,5 @@
 using CopaFilmes.Backend.Domain;
-using CopaFilmes.Backend.Model;
+using CopaFilmes.Backend.Model.Factory;
 using CopaFilmes.Backend.Model.Interfaces;
 using NUnit.Framework;
 using System.Collections.Generic;
@@ -21,14 +21,12 @@ namespace CopaFilmes.Test.Domain
         {
             //Arrange
             listaDeParticipantes = new List<IParticipante>();
-            var filmeParticipante1 = new Participante(new Filme("1","Filme 1", 10), 1);
-            listaDeParticipantes.Add(filmeParticipante1);
-            var filmeParticipante2 = new Participante(new Filme("2","Filme 2", 9), 2);
-            listaDeParticipantes.Add(filmeParticipante2);
-            var filmeParticipante3 = new Participante(new Filme("1","Filme 3", 10), 3);
-            listaDeParticipantes.Add(filmeParticipante3);
-            var filmeParticipante4 = new Participante(new Filme("2","Filme 4", 9), 4);
-            listaDeParticipantes.Add(filmeParticipante4);
+            
+            for (int i = 1; i <= 8; i++)
+            {
+                var filmeParticipante = ParticipanteFactory.Criar(FilmeFactory.Criar(i.ToString(), $"Filme {i}", i), i);
+                listaDeParticipantes.Add(filmeParticipante);
+            }            
 
             IFase novaFase;
             
@@ -37,7 +35,7 @@ namespace CopaFilmes.Test.Domain
             novaFase = inicializacaoDaFase.Inicializar();
 
             //Assert
-            Assert.AreEqual(novaFase.Confrontos.Count,2); 
+            Assert.AreEqual(novaFase.Confrontos.Count,4); 
         }
     }
 }

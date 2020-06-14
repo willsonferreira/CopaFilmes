@@ -1,5 +1,5 @@
 using CopaFilmes.Backend.Domain;
-using CopaFilmes.Backend.Model;
+using CopaFilmes.Backend.Model.Factory;
 using CopaFilmes.Backend.Model.Interfaces;
 using NUnit.Framework;
 using System.Collections.Generic;
@@ -21,13 +21,13 @@ namespace CopaFilmes.Test.Domain
         {
             //Arrange
             listaDeFilmes = new List<IFilme>();
-            var filmeParticipante1 = new Filme("1","Filme 2", 10);
+            var filmeParticipante1 = FilmeFactory.Criar("1","Filme 2", 10);
             listaDeFilmes.Add(filmeParticipante1);
-            var filmeParticipante2 = new Filme("2","Filme 4", 9);
+            var filmeParticipante2 = FilmeFactory.Criar("2","Filme 4", 9);
             listaDeFilmes.Add(filmeParticipante2);
-            var filmeParticipante3 = new Filme("1","Filme 3", 10);
+            var filmeParticipante3 = FilmeFactory.Criar("1","Filme 3", 10);
             listaDeFilmes.Add(filmeParticipante3);
-            var filmeParticipante4 = new Filme("2","Filme 1", 9);
+            var filmeParticipante4 = FilmeFactory.Criar("2","Filme 1", 9);
             listaDeFilmes.Add(filmeParticipante4);
             
             //Act

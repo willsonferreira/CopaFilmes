@@ -1,4 +1,3 @@
-using CopaFilmes.Backend.Domain;
 using CopaFilmes.Backend.Domain.Interfaces;
 using CopaFilmes.Backend.Model.Interfaces;
 
