@@ -6,25 +6,24 @@ using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 
 namespace CopaFilmes.Backend.AntiCorruption
-{
+{    
     public class ListaDeFilmes : IListaDeFilmes
     {
         #region Propriedades Privadas
-        protected string _url { get; set; }
+        protected IFontesExternas _fontesExternas { get; set; }
         #endregion
 
         #region Construtores
-        public ListaDeFilmes()
+        public ListaDeFilmes(IFontesExternas fontesExternas)
         {
-            ///TODO: Alerar para pegar do appsettings
-            _url = "http://copafilmes.azurewebsites.net/api/filmes";
+            _fontesExternas = fontesExternas;
         }
         #endregion
 
         #region Metodos
         public IList<IFilme> Buscar()
         {
-            var acessoDadosExternos = new AcessoDadosExternos(_url);
+            var acessoDadosExternos = new AcessoDadosExternos(_fontesExternas.UrlFilmes);
 
             var jsonFilmes = acessoDadosExternos.BuscarDadosComoTexto();
 
