@@ -8,7 +8,6 @@ namespace CopaFilmes.Test.Service
 {
     public class ListaDeFilmesServiceTeste
     {
-        private string _url { get; set; }
         private ListaDeFilmesService listaDeFilmesService;
         private IFontesExternas fontesExternas { get; set; }
 
