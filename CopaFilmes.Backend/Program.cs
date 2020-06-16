@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using System.IO;
 
 namespace CopaFilmes.Backend
 {
@@ -20,7 +21,13 @@ namespace CopaFilmes.Backend
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    var config = new ConfigurationBuilder().AddCommandLine(args).Build();
+                    webBuilder
+                        .UseKestrel()
+                        .UseContentRoot(Directory.GetCurrentDirectory())
+                        .UseConfiguration(config)
+                        .UseIISIntegration()
+                        .UseStartup<Startup>();
                 });
     
     }
