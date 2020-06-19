@@ -20,6 +20,7 @@ namespace CopaFilmes.Backend
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddCors();
             services.Configure<FontesExternas>(Configuration.GetSection("FontesExternas"));        
         }
 
@@ -30,6 +31,8 @@ namespace CopaFilmes.Backend
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors(option => option.AllowAnyOrigin());
 
             app.UseHttpsRedirection();
 
