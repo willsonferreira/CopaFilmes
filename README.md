@@ -16,4 +16,4 @@ Os testes unitários foram desenvolvidos utilizando o [NUnit 3.12.0](https://www
 
 ## Deployment
 
-O processo de deployment é disparado de forma automática quando ocorre o comando `push` na branch `master`. A ferramenta utilizada na automação foi a plataforma `Heroku`. O endereço de produção é `https://willson-copa-filmes-api.herokuapp.com/`
+O processo de deployment é disparado de forma automática quando ocorre o comando `push` na branch `master`. A ferramenta utilizada na automação foi a plataforma `Heroku`. O endereço de produção é https://willson-copa-filmes-api.herokuapp.com/
