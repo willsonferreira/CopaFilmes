@@ -19,13 +19,13 @@ namespace CopaFilmes.Backend.Domain
         #endregion
 
         #region Construtores
-        public InicializacaoDoCampeonato(IList<IFilme> filmesParticipantes)
+        public InicializacaoDoCampeonato(IList<IFilme> filmesParticipantes, IConfiguracaoDoCampeonato configuracaoDoCampeonato)
         {
             if (filmesParticipantes == null)
                 throw new ArgumentNullException("Os filmes participantes não foram informados");
 
-            if (filmesParticipantes.Count != 8)
-                throw new ArgumentException("Devem ser informados 8 filmes participantes");
+            if (filmesParticipantes.Count != configuracaoDoCampeonato.QuantidadeDeFilmesPermitidos)
+                throw new ArgumentException($"Devem ser informados {configuracaoDoCampeonato.QuantidadeDeFilmesPermitidos} filmes participantes");
 
             _filmesParticipantes = filmesParticipantes.ToList();
         }

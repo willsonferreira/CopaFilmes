@@ -9,7 +9,7 @@ using Microsoft.Extensions.Options;
 namespace CopaFilmes.Backend.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("filme")]
     public class FilmeController : ControllerBase
     {
         private readonly IFontesExternas _fontesExternas; 

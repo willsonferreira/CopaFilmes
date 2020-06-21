@@ -1,19 +1,26 @@
 using CopaFilmes.Backend.Service;
 using CopaFilmes.Backend.Model.Interfaces;
 using CopaFilmes.Backend.Model.Factory;
+using CopaFilmes.Backend.Model;
 using NUnit.Framework;
 using System.Collections.Generic;
+using Microsoft.Extensions.Configuration;
 
 namespace CopaFilmes.Test.Service
 {
     public class ExecucaoDoCampeonatoServiceTeste
     {
         private List<IFilme> listaDeFilmes;
+        private IConfiguracaoDoCampeonato configuracaoDoCampeonato;
 
         [SetUp]
         public void Dado_uma_lista_de_filmes()
         {
-            
+            var config = new ConfigurationBuilder()
+            .AddJsonFile("appSettings.json")
+            .Build();
+
+            configuracaoDoCampeonato = config.GetSection("ConfiguracaoDoCampeonato").Get<ConfiguracaoDoCampeonato>();
         }
 
         [Test]
@@ -33,7 +40,7 @@ namespace CopaFilmes.Test.Service
             }            
             
             //Act
-            var execucaoDoCampeonatoService = new ExecucaoDoCampeonatoService();
+            var execucaoDoCampeonatoService = new ExecucaoDoCampeonatoService(configuracaoDoCampeonato);
             var campeonato = execucaoDoCampeonatoService.Executar(listaDeFilmes);
 
             //Assert

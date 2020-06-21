@@ -21,7 +21,8 @@ namespace CopaFilmes.Backend
         {
             services.AddControllers();
             services.AddCors();
-            services.Configure<FontesExternas>(Configuration.GetSection("FontesExternas"));        
+            services.Configure<FontesExternas>(Configuration.GetSection("FontesExternas"));
+            services.Configure<ConfiguracaoDoCampeonato>(Configuration.GetSection("ConfiguracaoDoCampeonato"));        
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
