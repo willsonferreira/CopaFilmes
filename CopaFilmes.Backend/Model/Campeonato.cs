@@ -29,9 +29,6 @@ namespace CopaFilmes.Backend.Model
             if (participantes == null)
                 throw new ArgumentNullException("Os participantes não foram informados");
 
-            if (participantes.Count != 8)
-                throw new ArgumentException("Quantidade de participantes inválida");
-
             if (_fases == null)
                 _fases = new List<IFase>();
 

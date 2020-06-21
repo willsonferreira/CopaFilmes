@@ -6,9 +6,14 @@ namespace CopaFilmes.Backend.Service
 {
     public class ExecucaoDoCampeonatoService
     {
+        private IConfiguracaoDoCampeonato _configuracaoDoCampeonato;
+        public ExecucaoDoCampeonatoService(IConfiguracaoDoCampeonato configuracaoDoCampeonato)
+        {
+            _configuracaoDoCampeonato = configuracaoDoCampeonato;
+        }
         public ICampeonato Executar(IList<IFilme> filmes)
         {
-            var inicializacaoDoCampeonato = InicializacaoDoCampeonatoFactory.Criar(filmes);
+            var inicializacaoDoCampeonato = InicializacaoDoCampeonatoFactory.Criar(filmes, _configuracaoDoCampeonato);
 
             var campeonato = inicializacaoDoCampeonato.Inicializar();
 
